@@ -1,0 +1,16 @@
+Need to set up two service files.
+
+One for systemd and one for avahi.
+
+Both will be in the repo.
+
+For the systemd service, to start it on boot we need to run:
+
+sudo systemctl enable runRabbit.service 
+
+location for avahi: /etc/avahi/services/
+
+after making updates to the avahi service: sudo service avahi-daemon restart
+
+
+location for systemd: /usr/lib/systemd/system

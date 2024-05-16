@@ -1,0 +1,16 @@
+#Path to file: /usr/lib/systemd/system
+
+[Unit]
+Description=runRabbit Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/home/csi/classroom/venv/bin/python /home/csi/classroom/runRabbit.py
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy= multi-user.target
+
+

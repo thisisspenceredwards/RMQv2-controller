@@ -1,0 +1,5 @@
+make pyserial dynamically find relay board
+
+move rabbitmq manager sudo commands to rabbitmq boot file thing
+
+security!!

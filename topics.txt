@@ -1,0 +1,25 @@
+'CONNECTION_SUCCESS'
+
+    is used to confirm connection to broker and controller
+
+'CONNECTION_FAILURE' (Last will and testament)
+
+    is used to send a critical failure as the controller program has likely crashed
+
+'DATABASE_SUCCESS'
+
+    is used to confirm successful database operation
+
+'DATABASE_FAILURE'
+   
+    is used to alert that the database operation failed
+
+'CONTROLLER_SUCCESS'
+
+    is used to confirm successful controller operation
+
+'CONTROLLER_FAILURE'
+
+    is used to alert controller operation failed
+
+    

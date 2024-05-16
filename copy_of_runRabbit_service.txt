@@ -1,0 +1,20 @@
+Path to file: /usr/lib/systemd/system
+
+[Unit]
+Description=runRabbit Service
+After=multi-user.target
+
+[Service]
+Type=idle
+User=pi
+ExecStart=/usr/local/bin/python3.9 -u /home/pi/classroom/runRabbit.py
+WorkingDirectory=/home/pi/classroom
+Restart=always
+RestartSec=10s
+#KillMode=process
+#TimeoutSec=infinity
+
+[Install]
+WantedBy= multi-user.target
+
+

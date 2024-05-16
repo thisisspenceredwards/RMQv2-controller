@@ -1,0 +1,24 @@
+Client -> subscribes to different notification topics
+          DatabaseNotification/response
+          ControlNotification/resposne
+          StatusNotification/response
+          LogNotifification/response
+
+Notify:
+
+    Successes:
+        Database Operation
+        Control Operation
+        
+    Failures:
+        Database Failures:
+            Insertion failed
+            Previous/Next failure
+        Control Operation Err
+
+    Status Requests:
+        State of Controller
+        State of Database?
+                
+    Log Requests:
+        Return Logs (all?)

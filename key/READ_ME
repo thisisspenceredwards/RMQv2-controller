@@ -1,0 +1,11 @@
+To use SSH:
+
+place private key in Users/{your path, probably your name}/.ssh
+
+Next set its permissions to read only: chmod 400 OLC_PRIVATE
+
+Then to access raspberry: 
+
+ssh -i /Users/{your path again}/.ssh/OLC_PRIVATE pi@olc.local
+
+Passkey is: Dot

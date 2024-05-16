@@ -1,0 +1,266 @@
+from HelperFunctions.ClassroomValue import ClassroomValue
+from HelperFunctions.GetSerial import get_serial
+
+#RabbitMQ
+USER_NAME = "Production"
+PASSWORD = "bZa6N4ZJ94RdVmfFWqWmTrp5BkXBm1bZ6CoUxvJaPUT8CJlyjVqnvBZuqegR7wrQe31Y2NXRArGMrRed"
+VIRTUAL_BROKER = "Broker"
+IP_ADDRESS = "localhost"
+PORT = "5672"
+HEARTBEAT = 60
+TIMEOUT = 2.5
+ENCODING = "utf-8"
+EXCHANGE_TYPE = "fanout"
+#Relayboard
+NAME_OF_RELAY_BOARD = "FT232R"
+OK_VALUE = "00"
+ERROR_VALUE = "1000"
+ERROR_NOT_FOUND_VALUE = "999"
+MAXIMUM_ALLOWABLE_WIND_SPEED = 15
+
+MAC_ADDRESS = get_serial()
+DEFAULT_ROOM_ID = MAC_ADDRESS
+
+#Default values when creating the Settings table/units are seconds
+BLIND_POSITION_TOP = 0
+BLIND_POSITION_MIDDLE = 1
+BLIND_POSITION_BOTTOM = 2
+
+LIGHT_OFF = 0
+LIGHT_ON = 1
+
+RECEPTACLE_OFF = 0
+RECEPTACLE_ON = 1
+
+BLIND_LOCATION_BOTTOM = 7.20
+BLIND_LOCATION_MIDDLE = 3.7
+BLIND_LOCATION_BOTTOM_KEY = "BLIND_LOCATION_BOTTOM"
+BLIND_LOCATION_MIDDLE_KEY = "BLIND_LOCATION_MIDDLE"
+
+DEFAULT_STATE_SHUTDOWN = 0
+
+DEFAULT_STATE_RELAY_BOARD_STATUS = "00"
+
+BLIND_THREAD_SLEEP_TIME = 0.10
+#BLIND_MOVEMENT_COEFFICIENT = 0.10
+GENERIC_THREAD_SLEEP_TIME = 10
+##############################WORKING VALUES################################
+#ACTION KEYS
+ACTION_MOVE_BLIND_TOP = "MOVE_BLIND_TOP"
+ACTION_MOVE_BLIND_BOTTOM = "MOVE_BLIND_BOTTOM"
+ACTION_MOVE_BLIND_MIDDLE = "MOVE_BLIND_MIDDLE"
+ACTION_LIGHT_ON = "LIGHT_ON"
+ACTION_LIGHT_OFF = "LIGHT_OFF"
+ACTION_RECEPTACLE_ON = "RECEPTACLE_ON"
+ACTION_RECEPTACLE_OFF = "RECEPTACLE_OFF"
+ACTION_SHUTDOWN = "SHUTDOWN"
+ACTION_CANCEL_SHUTDOWN = "CANCEL_SHUTDOWN"
+
+#used for accessing blinds table
+TIME_TO_MIDDLE = "TIME_TO_MIDDLE"
+TIME_TO_BOTTOM = "TIME_TO_BOTTOM"
+
+room_id = ClassroomValue(DEFAULT_ROOM_ID, str)
+
+mac_address = ClassroomValue(MAC_ADDRESS, str)
+
+light_one = ClassroomValue(LIGHT_OFF, int)
+light_two = ClassroomValue(LIGHT_OFF, int)
+light_three = ClassroomValue(LIGHT_OFF, int)
+light_four = ClassroomValue(LIGHT_OFF, int)
+receptacle_one = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_two = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_three = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_four = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_five = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_six = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_seven = ClassroomValue(RECEPTACLE_OFF, int)
+receptacle_eight = ClassroomValue(RECEPTACLE_OFF, int)
+blind_one = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_two = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_three = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_four = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_five = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_six = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_seven = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+blind_eight = ClassroomValue(BLIND_POSITION_BOTTOM, int)
+
+shutdown = ClassroomValue(DEFAULT_STATE_SHUTDOWN, int)
+
+relay_board_status = ClassroomValue(DEFAULT_STATE_RELAY_BOARD_STATUS, str)
+
+DEFAULT_WIND_DIRECTION = "0"
+DEFAULT_WIND_SPEED = "0"
+DEFAULT_UNITS = "M"
+DEFAULT_STATUS = "00"
+DEFAULT_WIND_SPEED_BELOW_THRESHOLD = True
+WIND_SENSOR_UNABLE_TO_READ_WIND_SENSOR = 15
+
+
+wind_sensor_direction = ClassroomValue(DEFAULT_WIND_DIRECTION, str)
+wind_sensor_speed = ClassroomValue(DEFAULT_WIND_SPEED, str)
+wind_sensor_units = ClassroomValue(DEFAULT_UNITS, str)
+wind_sensor_status = ClassroomValue(DEFAULT_STATUS, str)
+wind_sensor_speed_below_threshold = ClassroomValue(DEFAULT_WIND_SPEED_BELOW_THRESHOLD, bool)
+
+#used within constantsmanager
+WIND_THRESHOLD_KEY = "WIND_THRESHOLD"
+MAC_ADDRESS_KEY = "MAC_ADDRESS"
+CONTROLLER_TIME = "CONTROLLER_TIME"
+
+#used with RoomSettingsManager
+UPDATE_ROOM_ID = "UPDATE_ROOM_ID"
+UPDATE_WIND_THRESHOLD = "UPDATE_WIND_THRESHOLD"
+CREATE_SWEEP = "CREATE_SWEEP"
+DELETE_SWEEP = "DELETE_SWEEP"
+
+#used in blindmanager
+WIND_SPEED_BELOW_THRESHOLD_KEY = "WIND_SPEED_BELOW_THRESHOLD"
+
+#used in NotificationManager
+CONTROLLER_CURRENT_VALUES = "CONTROLLER_CURRENT_VALUES"
+SETTINGS_CURRENT_VALUES = "SETTINGS_CURRENT_VALUES"
+SWEEP_CURRENT_VALUES = "SWEEP_CURRENT_VALUES"
+CONTROLLER_LOG = "CONTROLLER_LOG"
+
+
+####
+
+ROOM_ID_KEY = "ROOM_ID"
+BLIND_ONE_KEY = "BLIND_ONE"
+BLIND_TWO_KEY = "BLIND_TWO"
+BLIND_THREE_KEY = "BLIND_THREE"
+BLIND_FOUR_KEY = "BLIND_FOUR"
+BLIND_FIVE_KEY = "BLIND_FIVE"
+BLIND_SIX_KEY = "BLIND_SIX"
+BLIND_SEVEN_KEY = "BLIND_SEVEN"
+BLIND_EIGHT_KEY = "BLIND_EIGHT"
+
+RECEPTACLE_ONE_KEY = "RECEPTACLE_ONE"
+RECEPTACLE_TWO_KEY = "RECEPTACLE_TWO"
+RECEPTACLE_THREE_KEY = "RECEPTACLE_THREE"
+RECEPTACLE_FOUR_KEY = "RECEPTACLE_FOUR"
+RECEPTACLE_FIVE_KEY = "RECEPTACLE_FIVE"
+RECEPTACLE_SIX_KEY = "RECEPTACLE_SIX"
+RECEPTACLE_SEVEN_KEY = "RECEPTACLE_SEVEN"
+RECEPTACLE_EIGHT_KEY = "RECEPTACLE_EIGHT"
+LIGHT_ONE_KEY = "LIGHT_ONE"
+LIGHT_TWO_KEY = "LIGHT_TWO"
+LIGHT_THREE_KEY = "LIGHT_THREE"
+LIGHT_FOUR_KEY = "LIGHT_FOUR"
+SHUTDOWN_KEY = "SHUTDOWN"
+RELAY_BOARD_STATUS_KEY = "RELAY_BOARD_STATUS"
+WIND_SENSOR_STATUS_KEY = "WIND_SENSOR_STATUS"
+WIND_SENSOR_SPEED_KEY = "WIND_SENSOR_SPEED"
+WIND_SENSOR_UNITS_KEY = "WIND_SENSOR_UNITS"
+WIND_SENSOR_DIRECTION_KEY = "WIND_SENSOR_DIRECTION"
+WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY = "WIND_SENSOR_SPEED_BELOW_THRESHOLD"
+
+
+MQTT_TOPIC_CLASSROOM = "CLASSROOM"
+MQTT_TOPIC_CONTROLS = "CONTROLS"
+MQTT_TOPIC_NOTIFICATIONS = "NOTIFICATIONS"
+MQTT_TOPIC_BLIND_SETTINGS = "BLIND_SETTINGS"
+MQTT_TOPIC_ROOM_SETTINGS = "ROOM_SETTINGS"
+MQTT_TOPIC_TIME_SETTINGS = "TIME_SETTINGS"
+MQTT_TOPIC_SHUT_DOWN_SETTINGS = "SHUT_DOWN_SETTINGS"
+MQTT_RESPONSE_MESSAGE_PERIOD = 1
+
+
+CLIENT_EXCHANGE = "CLIENT_EXCHANGE"
+CONTROLLER_EXCHANGE = "CONTROLLER_EXCHANGE"
+
+BLINDS_DICT = {
+                  BLIND_ONE_KEY: blind_one,
+                  BLIND_TWO_KEY: blind_two,
+                  BLIND_THREE_KEY: blind_three,
+                  BLIND_FOUR_KEY: blind_four,
+                  BLIND_FIVE_KEY: blind_five,
+                  BLIND_SIX_KEY: blind_six,
+                  BLIND_SEVEN_KEY: blind_seven,
+                  BLIND_EIGHT_KEY: blind_eight,
+              }
+
+
+CLASSROOM_DICT = {
+                      BLIND_ONE_KEY: blind_one,
+                      BLIND_TWO_KEY: blind_two,
+                      BLIND_THREE_KEY: blind_three,
+                      BLIND_FOUR_KEY: blind_four,
+                      BLIND_FIVE_KEY: blind_five,
+                      BLIND_SIX_KEY: blind_six,
+                      BLIND_SEVEN_KEY: blind_seven,
+                      BLIND_EIGHT_KEY: blind_eight,
+                      LIGHT_ONE_KEY: light_one,
+                      LIGHT_TWO_KEY: light_two,
+                      LIGHT_THREE_KEY: light_three,
+                      LIGHT_FOUR_KEY: light_four,
+                      RECEPTACLE_ONE_KEY: receptacle_one,
+                      RECEPTACLE_TWO_KEY: receptacle_two,
+                      RECEPTACLE_THREE_KEY: receptacle_three,
+                      RECEPTACLE_FOUR_KEY: receptacle_four,
+                      RECEPTACLE_FIVE_KEY: receptacle_five,
+                      RECEPTACLE_SIX_KEY: receptacle_six,
+                      RECEPTACLE_SEVEN_KEY: receptacle_seven,
+                      RECEPTACLE_EIGHT_KEY: receptacle_eight,
+                      SHUTDOWN_KEY: shutdown,
+                      RELAY_BOARD_STATUS_KEY: relay_board_status,
+                      WIND_SENSOR_STATUS_KEY: wind_sensor_status,
+                      WIND_SENSOR_SPEED_KEY: wind_sensor_speed,
+                      WIND_SENSOR_UNITS_KEY: wind_sensor_units,
+                      WIND_SENSOR_DIRECTION_KEY: wind_sensor_direction,
+                      WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY: wind_sensor_speed_below_threshold
+                   }
+
+LIGHTS_DICT = {
+                    LIGHT_ONE_KEY: light_one,
+                    LIGHT_TWO_KEY: light_two,
+                    LIGHT_THREE_KEY: light_three,
+                    LIGHT_FOUR_KEY: light_four,
+                 }
+
+RECEPTACLES_DICT = {
+                    RECEPTACLE_ONE_KEY: receptacle_one,
+                    RECEPTACLE_TWO_KEY: receptacle_two,
+                    RECEPTACLE_THREE_KEY: receptacle_three,
+                    RECEPTACLE_FOUR_KEY: receptacle_four,
+                    RECEPTACLE_FIVE_KEY: receptacle_five,
+                    RECEPTACLE_SIX_KEY: receptacle_six,
+                    RECEPTACLE_SEVEN_KEY: receptacle_seven,
+                    RECEPTACLE_EIGHT_KEY: receptacle_eight
+                   }
+
+
+RELAY_MAPPING_DICT = {
+                         LIGHT_ONE_KEY: 1,
+                         LIGHT_TWO_KEY: 2,
+                         LIGHT_THREE_KEY: 3,
+                         LIGHT_FOUR_KEY: 4,
+                         BLIND_ONE_KEY: [5, 6],
+                         BLIND_TWO_KEY: [7, 8],
+                         BLIND_THREE_KEY: [9, 10],
+                         BLIND_FOUR_KEY: [11, 12],
+                         BLIND_FIVE_KEY: [13, 14],
+                         BLIND_SIX_KEY: [15, 16],
+                         BLIND_SEVEN_KEY: [17, 18],
+                         BLIND_EIGHT_KEY: [19, 20],
+                         RECEPTACLE_ONE_KEY: 21,
+                         RECEPTACLE_TWO_KEY: 22,
+                         RECEPTACLE_THREE_KEY: 23,
+                         RECEPTACLE_FOUR_KEY: 24,
+                         RECEPTACLE_FIVE_KEY: 25,
+                         RECEPTACLE_SIX_KEY: 26,
+                         RECEPTACLE_SEVEN_KEY: 27,
+                         RECEPTACLE_EIGHT_KEY: 28,
+                     }
+
+WIND_DICTIONARY = {
+                      WIND_SENSOR_DIRECTION_KEY: wind_sensor_direction,
+                      WIND_SENSOR_SPEED_KEY: wind_sensor_speed,
+                      WIND_SENSOR_UNITS_KEY: wind_sensor_units,
+                      WIND_SENSOR_STATUS_KEY: wind_sensor_status,
+                      WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY: wind_sensor_speed_below_threshold
+                  }
+
+
+SWEEP_DICT = {}
