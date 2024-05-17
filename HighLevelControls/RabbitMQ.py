@@ -38,7 +38,7 @@ def set_blinds_to_top_position():
     LoggingManager.log_info("RabbitMQ.set_blind_to_top_position: Executing")
     try:
         Controller.turn_off_all_relays()
-        BlindManager.set_blinds_to_top_position()
+        Controller.set_blind_to_top_position()
 
     except Exception as e:
         LoggingManager.log_info(f"RabbitMQ.set_blind_to_top_position: Error {e}")
@@ -69,8 +69,6 @@ while(True):
         from HighLevelControls.Managers.UPSWatcher import UPSWatcher
         from HighLevelControls.Managers.ConstantsManager import ConstantsManager
         from HighLevelControls.Managers.RelayManager import RelayManager
-        from HighLevelControls.Managers.BlindManager import BlindManager
-        from HighLevelControls.Managers.MessageManagers.BlindSettingsManager import BlindSettingsManager
         import RPi.GPIO as GPIO
 
         GPIO.setmode(GPIO.BOARD)

@@ -8,7 +8,6 @@ from HelperFunctions.Exceptions import HighLevelException
 from HighLevelControls.Managers.RelayManager import RelayManager
 from HighLevelControls.Managers.ConstantsManager import ConstantsManager
 from HighLevelControls.Managers.LoggingManager import LoggingManager
-from HighLevelControls.Managers.BlindManager import BlindManager
 
 
 class RelayBoardWatcher(threading.Thread):
@@ -65,6 +64,7 @@ class RelayBoardWatcher(threading.Thread):
         LoggingManager.log_info("RelayBoardWatcher.check_wind_sensor_status_flag: Executing")
 
         status = Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_STATUS_KEY].value
+
         if status != Constants.OK_VALUE and not RelayBoardWatcher._wind_sensor_error_flag:
             LoggingManager.log_info(f"RelayBoardWatcher.check_wind_sensor_status_flag: Wind sensor reports error {status}")
             RelayBoardWatcher._wind_sensor_error_flag = True
@@ -83,9 +83,11 @@ class RelayBoardWatcher(threading.Thread):
 
         if not Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value and not RelayBoardWatcher._shades_disabled:
             LoggingManager.log_info("RelayBoardWatcher.check_wind_speed_flag: Wind speed is above threshold")
-            BlindManager.set_blinds_to_top_position_high_wind()
+            #SEDWARDS: FIX
+            #Controller.set_blinds_to_top_position_high_wind()
             RelayBoardWatcher._shades_disabled = True
             RelayBoardWatcher._send_message()
+
         #Wind is now below threshold we need to update iPad
         elif Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value and RelayBoardWatcher._shades_disabled:
             LoggingManager.log_info("RelayBoardWatcher.check_wind_speed_flag: Wind speed is below threshold")

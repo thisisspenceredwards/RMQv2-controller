@@ -5,7 +5,6 @@ import datetime
 import threading
 from HelperFunctions.Exceptions import catch_error_helper
 import HelperFunctions.Constants as Constants
-from HighLevelControls.Managers.BlindManager import BlindManager
 from HighLevelControls.Managers.LoggingManager import LoggingManager
 from HighLevelControls.Parser import ParsedMessage
 from HighLevelControls.Controller import Controller
@@ -16,7 +15,7 @@ from HighLevelControls.Managers.ConstantsManager import ConstantsManager
 class SweepWatcher(threading.Thread):
 
     nonlooping_commands = {
-                 Constants.ACTION_MOVE_BLIND_TOP: lambda name: BlindManager.on_message(name, 0),
+                 Constants.ACTION_MOVE_BLIND_TOP: lambda name: Controller.update_shade_pisition(name, 0),
                  Constants.ACTION_LIGHT_OFF: lambda name: Controller.light_off(name),
                  Constants.ACTION_RECEPTACLE_OFF: lambda name: Controller.receptacle_off(name),
                            }
@@ -89,7 +88,8 @@ class SweepWatcher(threading.Thread):
                         LoggingManager.log_error(f"ClassroomManager.process_message(): Invalid Command Recieved {device}, {method_key}")
 
                 LoggingManager.log_info("SweepWatcher.process_message(): Exiting")
-                BlindManager.start()
+                #SEDWARDS: fix
+                #BlindManager.start()
                 SweepWatcher._send_message()
 
             except serial.SerialException as e:
@@ -114,6 +114,7 @@ class SweepWatcher(threading.Thread):
             method()
         LoggingManager.log_info("SweepWatcher._execute_command(): Exiting")
 
+
     @staticmethod
     def _send_message():
         LoggingManager.log_info("SweepWatcher._send_message(): Executing")
@@ -126,6 +127,7 @@ class SweepWatcher(threading.Thread):
             LoggingManager.log_error(f"SweepWatcher.send_message: Connection error, {e}")
             raise HighLevelException("SweepWatcher", "_send_message", "RabbitMQ connection error", f"{e}")
         LoggingManager.log_info("SweepWatcher._send_message(): Exiting")
+
 
     @staticmethod
     def _connect():

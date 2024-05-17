@@ -1,7 +1,6 @@
 import HelperFunctions.Constants as Constants
 from HighLevelControls.Managers.LoggingManager import LoggingManager
 from HighLevelControls.Managers.NotificationManager import NotificationManager
-from HighLevelControls.Managers.MessageManagers.BlindSettingsManager import BlindSettingsManager
 from HighLevelControls.Managers.MessageManagers.RoomSettingsManager import RoomSettingsManager
 from HighLevelControls.Managers.MessageManagers.ClassroomManager import ClassroomManager
 from HighLevelControls.Managers.MessageManagers.ShutDownManager import ShutDownManager
@@ -10,7 +9,6 @@ class TopicManager:
     #Methods in the topic_dictionary MUST have a 'process_message' function, this was enforced but decorators complicated it
     _topic_dictionary = { Constants.MQTT_TOPIC_CLASSROOM: ClassroomManager,
                            Constants.MQTT_TOPIC_NOTIFICATIONS: NotificationManager,
-                            Constants.MQTT_TOPIC_BLIND_SETTINGS: BlindSettingsManager,
                              Constants.MQTT_TOPIC_ROOM_SETTINGS: RoomSettingsManager,
                               Constants.MQTT_TOPIC_SHUT_DOWN_SETTINGS: ShutDownManager
                         }

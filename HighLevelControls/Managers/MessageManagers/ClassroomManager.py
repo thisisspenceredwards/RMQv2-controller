@@ -5,7 +5,6 @@ from HighLevelControls.Parser import ParsedMessage
 from HighLevelControls.Managers.LoggingManager import LoggingManager
 from HighLevelControls.Managers.NotificationManager import NotificationManager
 from HighLevelControls.Managers.RelayManager import RelayManager
-from HighLevelControls.Managers.BlindManager import BlindManager
 from HelperFunctions.Exceptions import catch_error_helper
 
 #Relay gets refreshed from BlindManager and BlindThread, blind thread and manager get called everytime a message is received
@@ -14,13 +13,13 @@ class ClassroomManager:
 
 
     commands = {
-                 Constants.ACTION_MOVE_BLIND_TOP: lambda name: BlindManager.on_message(name, 0),
-                 Constants.ACTION_MOVE_BLIND_MIDDLE: lambda name: BlindManager.on_message(name, 1),
-                 Constants.ACTION_MOVE_BLIND_BOTTOM: lambda name: BlindManager.on_message(name, 2),
-                 Constants.ACTION_LIGHT_ON: lambda name: Controller.light_on(name),
-                 Constants.ACTION_LIGHT_OFF: lambda name: Controller.light_off(name),
-                 Constants.ACTION_RECEPTACLE_ON: lambda name: Controller.receptacle_on(name),
-                 Constants.ACTION_RECEPTACLE_OFF: lambda name: Controller.receptacle_off(name)
+                 Constants.ACTION_MOVE_BLIND_TOP   : lambda name: Controller.move_blind(name, 0),
+                 Constants.ACTION_MOVE_BLIND_MIDDLE: lambda name: Controller.move_blind(name, 1),
+                 Constants.ACTION_MOVE_BLIND_BOTTOM: lambda name: Controller.move_blind(name, 2),
+                 Constants.ACTION_LIGHT_ON         : lambda name: Controller.light_on(name),
+                 Constants.ACTION_LIGHT_OFF        : lambda name: Controller.light_off(name),
+                 Constants.ACTION_RECEPTACLE_ON    : lambda name: Controller.receptacle_on(name),
+                 Constants.ACTION_RECEPTACLE_OFF   : lambda name: Controller.receptacle_off(name)
                }
 
     @staticmethod
@@ -37,7 +36,6 @@ class ClassroomManager:
                     LoggingManager.log_error(f"ClassroomManager.process_message(): Invalid Command Recieved {device}, {method_key}")
 
             LoggingManager.log_info("ClassroomManager.process_message(): Exiting")
-            BlindManager.start()
             parsed_messages = ParsedMessage(Constants.MQTT_TOPIC_NOTIFICATIONS, {"CONTROLLER_CURRENT_VALUES":""})
             NotificationManager.process_message(parsed_messages)
 

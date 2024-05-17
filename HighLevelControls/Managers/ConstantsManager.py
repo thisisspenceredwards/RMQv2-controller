@@ -1,7 +1,6 @@
 import json
 import HelperFunctions.Constants as Constants
 from HighLevelControls.Managers.LoggingManager import LoggingManager
-import HelperFunctions.BlindObjects as BO
 import time
 class ConstantsManager:
 
@@ -42,10 +41,6 @@ class ConstantsManager:
     def settings_current_values():
         LoggingManager.log_info("ConstantsManager.settings_current_values(): Executing")
         settings_dict = {}
-        for key, obj in BO.BLIND_DICT.items():
-            settings_dict[f"{key}_{Constants.TIME_TO_MIDDLE}"] = round(obj.blind_location_middle,2)
-            settings_dict[f"{key}_{Constants.TIME_TO_BOTTOM}"] = round(obj.blind_location_bottom, 2)
-
         settings_dict[Constants.WIND_SPEED_AUTO_RAISE_THRESHOLD_KEY] = Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD
         settings_dict[Constants.WIND_SPEED_LOWER_LOCK_THRESHOLD_KEY] = Constants.WIND_SPEED_MAXIMUM_FOR_LOWER_LOCK_THRESHOLD
         settings_dict[Constants.ROOM_ID_KEY] = Constants.room_id.value

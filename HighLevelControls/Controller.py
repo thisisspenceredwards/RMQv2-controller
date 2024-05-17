@@ -57,20 +57,23 @@ class Controller:
             light_obj.value = 0
         LoggingManager.log_info("Controller.light_off: Exiting")
 
+    @staticmethod
+    def move_shade(shade, position):
+        LoggingManager.log_info(f"Controller.move_shade {shade}: Executing")
+
+        relay_arr = Constants.RELAY_MAPPING_DICT.get(shade)
+
+
+        #do something
+        # RelayManager.turn_on_relay(relay)
+        # RelayManager.turn_off_relay(relay)
+
 
     @staticmethod
-    def move_blind_down(relay_arr):
-        #YOU MUST MAKE SURE THE OPPOSING RELAY IS OFF
-        #this is wrapped because turn_off_all_blind_relays expects an array, and rellay_arr[0] is just an int
-        RelayManager.turn_off_relay(relay_arr[0])
-        RelayManager.turn_on_relay(relay_arr[1])
-
-
-    @staticmethod
-    def move_blind_up(relay_arr):
-        #YOU MUST MAKE SURE THE OPPOSING RELAY IS OFF
-        RelayManager.turn_off_relay(relay_arr[1])
-        RelayManager.turn_on_relay(relay_arr[0])
+    def move_shades_to_top_position():
+        LoggingManager.log_info('Controller.move_shades_to_top_position: Executing')
+        #SEDWARDS: fix
+        LoggingManager.log_info('Controller.move_shades_to_top_position: Exiting')
 
 
     @staticmethod

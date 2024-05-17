@@ -1,7 +1,6 @@
 from HighLevelControls.Managers.MessageManagers.Tables.RoomSettingsTable import RoomSettingsTable
 from HighLevelControls.Managers.MessageManagers.Tables.SweepSettingsTable import SweepSettingsTable
 from HighLevelControls.Managers.MessageManagers.Tables.DatabaseConnection import DatabaseConnection
-from HighLevelControls.Managers.IndividualBlind import IndividualBlind
 import HelperFunctions.Constants as Constants
 
 @DatabaseConnection.DatabaseConnection
