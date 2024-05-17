@@ -46,10 +46,10 @@ class ConstantsManager:
             settings_dict[f"{key}_{Constants.TIME_TO_MIDDLE}"] = round(obj.blind_location_middle,2)
             settings_dict[f"{key}_{Constants.TIME_TO_BOTTOM}"] = round(obj.blind_location_bottom, 2)
 
-        settings_dict[Constants.WIND_THRESHOLD_KEY] = Constants.MAXIMUM_ALLOWABLE_WIND_SPEED
+        settings_dict[Constants.WIND_SPEED_AUTO_RAISE_THRESHOLD_KEY] = Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD
+        settings_dict[Constants.WIND_SPEED_LOWER_LOCK_THRESHOLD_KEY] = Constants.WIND_SPEED_MAXIMUM_FOR_LOWER_LOCK_THRESHOLD
         settings_dict[Constants.ROOM_ID_KEY] = Constants.room_id.value
         settings_dict[Constants.CONTROLLER_TIME] = time.clock_gettime(time.CLOCK_REALTIME)
-
         LoggingManager.log_info("ConstantsManager.settings_current_values(): Exiting")
         return json.dumps(settings_dict)
 

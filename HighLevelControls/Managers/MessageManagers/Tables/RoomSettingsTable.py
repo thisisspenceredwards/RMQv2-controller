@@ -11,7 +11,8 @@ class RoomSettingsTable:
     _init_query = SH.ROOM_SETTINGS_CREATE_TABLE
     _select_query = SH.ROOM_SETTINGS_SELECT
     _insert_query = SH.ROOM_SETTINGS_INSERT
-    _update_wind_threshold_query = SH.ROOM_SETTINGS_UPDATE_WIND_THRESHOLD
+    _update_wind_speed_auto_raise_threshold_query = SH.ROOM_SETTINGS_UPDATE_WIND_SPEED_AUTO_RAISE_THRESHOLD
+    _update_wind_speed_lower_lock_threshold_query = SH.ROOM_SETTINGS_UPDATE_WIND_SPEED_LOWER_LOCK_THRESHOLD
     _update_room_id_query = SH.ROOM_SETTINGS_UPDATE_ROOM_ID
     _delete_query = SH.ROOM_SETTINGS_DELETE
     _check_number_of_rows = SH.ROOM_SETTINGS_CHECK_NUMBER_OF_ROWS
@@ -21,7 +22,12 @@ class RoomSettingsTable:
     def _populate_table():
         LoggingManager.log_info("RoomSettingsTable._populate_table(): Executing")
         #insert queries
-        statement = (int(RoomSettingsTable._ID), str(Constants.MAC_ADDRESS), float(Constants.MAXIMUM_ALLOWABLE_WIND_SPEED))
+        statement = (
+            int(RoomSettingsTable._ID),
+            str(Constants.MAC_ADDRESS),
+            float(Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD),
+            float(Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD)
+        )
         DatabaseConnection.cursor.execute(RoomSettingsTable._insert_query, statement)
 
         LoggingManager.log_info("RoomSettingsTable._populate_table(): Exiting")
@@ -61,20 +67,27 @@ class RoomSettingsTable:
         LoggingManager.log_info("RoomSettingsTable.get_settings(): Executing")
         row = DatabaseConnection.cursor.execute(RoomSettingsTable._select_query).fetchone()
         LoggingManager.log_info("RoomSettingsTable.get_settings(): Exiting")
-        return {Constants.ROOM_ID_KEY: row[Constants.ROOM_ID_KEY], Constants.WIND_THRESHOLD_KEY: row[Constants.WIND_THRESHOLD_KEY]}
+        return {Constants.ROOM_ID_KEY: row[Constants.ROOM_ID_KEY], Constants.WIND_SPEED_AUTO_RAISE_THRESHOLD_KEY: row[Constants.WIND_SPEED_AUTO_RAISE_THRESHOLD_KEY]}
 
 
     @staticmethod
-    def update_wind_threshold(wind_threshold):
-        LoggingManager.log_info("RoomSettingsTable.update_wind_threshold(): Executing")
+    def update_wind_speed_auto_raise_threshold(wind_threshold):
+        LoggingManager.log_info("RoomSettingsTable.update_wind_speed_auto_raise_threshold(): Executing")
         entities = (wind_threshold,)
-        DatabaseConnection.cursor.execute(RoomSettingsTable._update_wind_threshold_query, entities)
-        LoggingManager.log_info("RoomSettingsTable.update_wind_threshold(): Exiting")
+        DatabaseConnection.cursor.execute(RoomSettingsTable._update_wind_speed_auto_raise_threshold_query, entities)
+        LoggingManager.log_info("RoomSettingsTable.update_wind_speed_auto_raise_threshold(): Exiting")
+
+    @staticmethod
+    def update_wind_speed_lower_lock_threshold(wind_threshold):
+        LoggingManager.log_info("RoomSettingsTable.update_wind_speed_lower_lock_threshold(): Executing")
+        entities = (wind_threshold,)
+        DatabaseConnection.cursor.execute(RoomSettingsTable._update_wind_speed_lower_lock_threshold_query, entities)
+        LoggingManager.log_info("RoomSettingsTable.update_wind_speed_lower_lock_threshold(): Exiting")
 
     @staticmethod
     def update_room_id(room_id):
-        LoggingManager.log_info("RoomSettingsTable.update_wind_threshold(): Executing")
+        LoggingManager.log_info("RoomSettingsTable.WIND_SENSOR_UPDATE_WIND_SPEED_AUTO_RAISE_THRESHOLD(): Executing")
         entities = (room_id,)
         DatabaseConnection.cursor.execute(RoomSettingsTable._update_room_id_query, entities)
-        LoggingManager.log_info("RoomSettingsTable.update_wind_threshold(): Exiting")
+        LoggingManager.log_info("RoomSettingsTable.WIND_SENSOR_UPDATE_WIND_SPEED_AUTO_RAISE_THRESHOLD(): Exiting")
 

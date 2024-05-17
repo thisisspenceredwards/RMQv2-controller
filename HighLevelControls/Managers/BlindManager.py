@@ -79,7 +79,7 @@ class BlindManager:
         #gets the individualShade object
         blind_object = BlindObjects.BLIND_DICT[name]
 
-        if not Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY].value and location != Constants.BLIND_POSITION_TOP:
+        if not Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value and location != Constants.BLIND_POSITION_TOP:
             LoggingManager.log_info("BlindManager.on_message: Wind speed is above threshold and blinds are not at top position. Exiting")
             return
 

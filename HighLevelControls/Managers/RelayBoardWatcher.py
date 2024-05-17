@@ -81,13 +81,13 @@ class RelayBoardWatcher(threading.Thread):
     def check_wind_speed_flag():
         LoggingManager.log_info("RelayBoardWatcher.check_wind_speed_flag: Executing")
 
-        if not Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY].value and not RelayBoardWatcher._shades_disabled:
+        if not Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value and not RelayBoardWatcher._shades_disabled:
             LoggingManager.log_info("RelayBoardWatcher.check_wind_speed_flag: Wind speed is above threshold")
             BlindManager.set_blinds_to_top_position_high_wind()
             RelayBoardWatcher._shades_disabled = True
             RelayBoardWatcher._send_message()
         #Wind is now below threshold we need to update iPad
-        elif Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY].value and RelayBoardWatcher._shades_disabled:
+        elif Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value and RelayBoardWatcher._shades_disabled:
             LoggingManager.log_info("RelayBoardWatcher.check_wind_speed_flag: Wind speed is below threshold")
             RelayBoardWatcher._shades_disabled = False
             RelayBoardWatcher._send_message()

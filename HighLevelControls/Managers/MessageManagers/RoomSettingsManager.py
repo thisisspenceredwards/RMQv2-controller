@@ -19,7 +19,8 @@ class RoomSettingsManager:
 
     _dict = {
         Constants.UPDATE_ROOM_ID: lambda val: RoomSettingsManager._update_room_id(val),
-        Constants.UPDATE_WIND_THRESHOLD: lambda val: RoomSettingsManager._update_wind_threshold(val),
+        Constants.UPDATE_WIND_SPEED_AUTO_RAISE_THRESHOLD: lambda val: RoomSettingsManager._update_wind_speed_auto_raise_threshold(val),
+        Constants.UPDATE_WIND_SPEED_LOWER_LOCK_THRESHOLD: lambda val: RoomSettingsManager._update_wind_speed_lower_lock_threshold(val),
         Constants.CONTROLLER_TIME: lambda val: RoomSettingsManager._update_room_time(val),
         Constants.CREATE_SWEEP: lambda val: RoomSettingsManager._create_sweep(val),
         Constants.DELETE_SWEEP: lambda val: RoomSettingsManager._delete_sweep(val)
@@ -27,7 +28,8 @@ class RoomSettingsManager:
 
     _response_dict = {
         Constants.UPDATE_ROOM_ID: lambda: RoomSettingsManager._SETTINGS_MESSAGE,
-        Constants.UPDATE_WIND_THRESHOLD: lambda: RoomSettingsManager._SETTINGS_MESSAGE,
+        Constants.UPDATE_WIND_SPEED_AUTO_RAISE_THRESHOLD: lambda: RoomSettingsManager._SETTINGS_MESSAGE,
+        Constants.UPDATE_WIND_SPEED_LOWER_LOCK_THRESHOLD: lambda: RoomSettingsManager._SETTINGS_MESSAGE,
         Constants.CONTROLLER_TIME: lambda: RoomSettingsManager._SETTINGS_MESSAGE,
         Constants.CREATE_SWEEP: lambda: RoomSettingsManager._SWEEP_MESSAGE,
         Constants.DELETE_SWEEP: lambda: RoomSettingsManager._SWEEP_MESSAGE
@@ -64,12 +66,21 @@ class RoomSettingsManager:
 
 
     @staticmethod
-    def _update_wind_threshold(val):
-        LoggingManager.log_info("RoomSettingsManager._update_wind_threshold(): Executing")
+    def _update_wind_speed_auto_raise_threshold(val):
+        LoggingManager.log_info("RoomSettingsManager._update_wind_speed_auto_raise_threshold(): Executing")
         val = float(val)
-        RoomSettingsTable.update_wind_threshold(val)
-        Constants.MAXIMUM_ALLOWABLE_WIND_SPEED = val
-        LoggingManager.log_info("RoomSettingsManager._update_wind_threshold(): Exiting")
+        RoomSettingsTable.update_wind_speed_auto_raise_threshold(val)
+        Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD = val
+        LoggingManager.log_info("RoomSettingsManager._update_wind_speed_auto_raise_threshold(): Exiting")
+
+    @staticmethod
+    def _update_wind_speed_lower_lock_threshold(val):
+        LoggingManager.log_info("RoomSettingsManager._update_lower_lock_threshold(): Executing")
+        val = float(val)
+        RoomSettingsTable.update_wind_speed_lower_lock_threshold(val)
+        Constants.WIND_SPEED_MAXIMUM_FOR_LOWER_LOCK_THRESHOLD = val
+        LoggingManager.log_info("RoomSettingsManager._update_lower_lock_threshold(): Exiting")
+
 
     @staticmethod
     def _update_room_id(val):

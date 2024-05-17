@@ -83,7 +83,7 @@ class WindSensorManager:
         Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_SPEED_KEY].value = wind_dict[Constants.WIND_SENSOR_SPEED_KEY]
         Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_UNITS_KEY].value = wind_dict[Constants.WIND_SENSOR_UNITS_KEY]
         Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_STATUS_KEY].value = wind_dict[Constants.WIND_SENSOR_STATUS_KEY]
-        Constants.WIND_DICTIONARY[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY].value = wind_dict[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY]
+        Constants.WIND_DICTIONARY[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY].value = wind_dict[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY]
 
 
     @staticmethod
@@ -91,8 +91,8 @@ class WindSensorManager:
         LoggingManager.log_info("WindSensorManager.check_windspeeed: Executing")
         wind_speed = wind_dict[Constants.WIND_SENSOR_SPEED_KEY]
         float_wind_speed = float(wind_speed)
-        LoggingManager.log_info(f"WindSensorManager._check_windspeed: {Constants.MAXIMUM_ALLOWABLE_WIND_SPEED}")
-        if float_wind_speed > Constants.MAXIMUM_ALLOWABLE_WIND_SPEED:
+        LoggingManager.log_info(f"WindSensorManager._check_windspeed: {Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD}")
+        if float_wind_speed > Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD:
             WindSensorManager._duration_of_high_wind = 1 if WindSensorManager._duration_of_high_wind == 0 else 2
             LoggingManager.log_warn(f"WindSensorManager.check_windspeed: duration of high wind {WindSensorManager._duration_of_high_wind}")
 
@@ -101,12 +101,12 @@ class WindSensorManager:
 
 
         if WindSensorManager._duration_of_high_wind >= 2:
-            wind_dict[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY] = False
+            wind_dict[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY] = False
 
 
         #RAISE THE SHADES
         else:
-            wind_dict[Constants.WIND_SENSOR_SPEED_BELOW_THRESHOLD_KEY] = True
+            wind_dict[Constants.WIND_SPEED_BELOW_AUTO_RAISE_THRESHOLD_KEY] = True
 
 
         LoggingManager.log_info("WindSensorManager.check_windspeeed: Exiting")

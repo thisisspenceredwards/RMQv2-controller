@@ -9,7 +9,7 @@ def initialize_settings():
     RoomSettingsTable.create_table_if_not_exist()
     room_dict = RoomSettingsTable.get_settings()
     Constants.room_id.value = room_dict[Constants.ROOM_ID_KEY]
-    Constants.MAXIMUM_ALLOWABLE_WIND_SPEED = room_dict[Constants.WIND_THRESHOLD_KEY]
+    Constants.WIND_SPEED_MAXIMUM_FOR_AUTO_RAISE_THRESHOLD = room_dict[Constants.WIND_SPEED_AUTO_RAISE_THRESHOLD_KEY]
     SweepSettingsTable.create_table_if_not_exist()
     sweep_dict = SweepSettingsTable.get_entries()
     Constants.SWEEP_DICT = sweep_dict
